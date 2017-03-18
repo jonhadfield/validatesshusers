@@ -54,7 +54,7 @@ func main() {
 	app.EnableBashCompletion = true
 
 	app.Name = "validatesshusers"
-	app.Version = "0.0.7"
+	app.Version = "0.0.8"
 	app.Compiled = time.Now()
 	app.Authors = []cli.Author{
 		cli.Author{
