@@ -1,21 +1,21 @@
 package main
 
 import (
+	"encoding/base64"
 	"fmt"
 	"github.com/urfave/cli"
 	"gopkg.in/yaml.v2"
 	"io/ioutil"
 	"log"
 	"os"
-	"time"
 	"strings"
-	"encoding/base64"
+	"time"
 )
 
 var (
 	_debug = log.New(ioutil.Discard, "", 0)
-	_info = log.New(ioutil.Discard, "", 0)
-	_warn = log.New(ioutil.Discard, "", 0)
+	_info  = log.New(ioutil.Discard, "", 0)
+	_warn  = log.New(ioutil.Discard, "", 0)
 	_error = log.New(ioutil.Discard, "", 0)
 )
 
@@ -54,7 +54,7 @@ func main() {
 	app.EnableBashCompletion = true
 
 	app.Name = "validatesshusers"
-	app.Version = "0.0.10"
+	app.Version = "0.0.11"
 	app.Compiled = time.Now()
 	app.Authors = []cli.Author{
 		cli.Author{
@@ -80,7 +80,6 @@ func main() {
 			fmt.Println("USAGE  validatesshuser <file>")
 		}
 
-
 		if _, err := os.Stat(usersFile); err == nil {
 			file, err := os.Open(usersFile)
 			if err != nil {
@@ -105,7 +104,7 @@ func main() {
 						fmt.Printf("Warning: user: \"%s\". Usernames should only contain lower case characters\n", user.Name)
 					}
 					// If home directory is specified, warn if not default
-					if user.Home_dir != "" && user.Home_dir != "/home/" + user.Name {
+					if user.Home_dir != "" && user.Home_dir != "/home/"+user.Name {
 						fmt.Printf("Warning: Specified home directory: %s differs from expected default: /home/%s\n", user.Home_dir, user.Name)
 						allOk = false
 					}
@@ -114,7 +113,7 @@ func main() {
 						fmt.Printf("Error: gecos (comment) not specified for user: %s\n", user.Name)
 						allOk = false
 						// Check gecos contains email address
-					} else if ! strings.Contains(user.Gecos, "@") {
+					} else if !strings.Contains(user.Gecos, "@") {
 						fmt.Printf("Error: gecos (comment) for user: %s does not have an email address\n", user.Name)
 						allOk = false
 					}
@@ -127,7 +126,7 @@ func main() {
 						for _, b64PublicKey := range user.Public_keys {
 							publicKey, _ := base64.StdEncoding.DecodeString(b64PublicKey)
 							var invalidKeys int = 0
-							if ! strings.HasPrefix(string(publicKey), "ssh-rsa ") {
+							if !strings.HasPrefix(string(publicKey), "ssh-rsa ") {
 								invalidKeys++
 							}
 							if invalidKeys > 0 {
@@ -145,7 +144,7 @@ func main() {
 				}
 			}
 		} else {
-			fmt.Printf("Could not open: %s\n",usersFile)
+			fmt.Printf("Could not open: %s\n", usersFile)
 			os.Exit(1)
 		}
 
