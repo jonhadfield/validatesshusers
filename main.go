@@ -61,13 +61,9 @@ func main() {
 	}
 	if *file == "" {
 		kingpin.Usage()
-	}
-
-	var usersFile = *file
-	if usersFile == "" {
-		fmt.Println("USAGE  validatesshuser <file>")
 		os.Exit(1)
 	}
+	var usersFile = *file
 
 	if _, err := os.Stat(usersFile); err == nil {
 		file, err := os.Open(usersFile)
@@ -133,7 +129,7 @@ func main() {
 			}
 		}
 	} else {
-		fmt.Printf("Could not open: %s\n", usersFile)
+		fmt.Printf("Error: Could not open path: %s\n", usersFile)
 		os.Exit(1)
 	}
 
