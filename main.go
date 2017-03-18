@@ -54,7 +54,7 @@ func main() {
 	app.EnableBashCompletion = true
 
 	app.Name = "validatesshusers"
-	app.Version = "0.0.11"
+	app.Version = "0.0.12"
 	app.Compiled = time.Now()
 	app.Authors = []cli.Author{
 		cli.Author{
@@ -78,6 +78,7 @@ func main() {
 		var usersFile string = c.Args().Get(0)
 		if usersFile == "" {
 			fmt.Println("USAGE  validatesshuser <file>")
+			os.Exit(1)
 		}
 
 		if _, err := os.Stat(usersFile); err == nil {
