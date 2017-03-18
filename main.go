@@ -62,9 +62,9 @@ func main() {
 			Email: "jon@lessknown.co.uk",
 		},
 	}
-	app.HelpName = "-"
-	app.Usage = "AWS - SSH User Manager"
-	app.Description = ""
+	app.HelpName = "validatesshusers"
+	app.Usage = "Validation for users YAML files"
+	//app.Description = "ss"
 
 	app.Flags = []cli.Flag{
 		cli.StringFlag{
@@ -75,7 +75,12 @@ func main() {
 	}
 	app.Action = func(c *cli.Context) error {
 		initLogger(c.String("log-level"))
-		var usersFile = c.Args().Get(0)
+		var usersFile string = c.Args().Get(0)
+		if usersFile == "" {
+			fmt.Println("USAGE  validatesshuser <file>")
+		}
+
+
 		if _, err := os.Stat(usersFile); err == nil {
 			file, err := os.Open(usersFile)
 			if err != nil {
@@ -134,10 +139,14 @@ func main() {
 				}
 				if allOk {
 					fmt.Println("OK")
+					os.Exit(0)
+				} else {
+					os.Exit(1)
 				}
 			}
 		} else {
-			fmt.Printf("Could not find file: %s\n", usersFile)
+			fmt.Printf("Could not open: %s\n",usersFile)
+			os.Exit(1)
 		}
 
 		return nil
