@@ -1,0 +1,29 @@
+language: go
+go: 1.7
+#install: 
+#before_deploy:
+#- GOOS=linux GOARCH=amd64 go build -o validatesshusers_linux_amd64
+#- GOOS=linux GOARCH=386 go build -o validatesshusers_linux_386
+#- GOOS=linux GOARCH=arm go build -o validatesshusers_linux_arm
+#- GOOS=darwin GOARCH=amd64 go build -o validatesshusers_darwin_amd64
+#- GOOS=windows GOARCH=amd64 go build -o validatesshusers_windows_amd64.exe
+#- GOOS=windows GOARCH=386 go build -o validatesshusers_windows_386.exe
+#deploy:
+#  skip_cleanup: true
+#  provider: releases
+#  api_key:
+#    secure: 
+#  file:
+#  - validatesshusers_linux_amd64
+#  - validatesshusers_linux_386
+#  - validatesshusers_linux_arm
+#  - validatesshusers_darwin_amd64
+#  - validatesshusers_windows_amd64.exe
+#  - validatesshusers_windows_386.exe
+#  on:
+#    tags: true
+#    repo: jonhadfield/validatesshusers
+#env:
+#  global:
+#  - secure: 
+#  - secure: 
