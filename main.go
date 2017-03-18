@@ -54,7 +54,7 @@ var (
 )
 
 func main() {
-	kingpin.Version("0.1.4")
+	kingpin.Version("0.1.5")
 	kingpin.Parse()
 	if *debug {
 		initLogger("debug")
