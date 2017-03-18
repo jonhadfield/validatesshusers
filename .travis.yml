@@ -1,29 +1,25 @@
 language: go
 go: 1.7
-#install: 
-#before_deploy:
-#- GOOS=linux GOARCH=amd64 go build -o validatesshusers_linux_amd64
-#- GOOS=linux GOARCH=386 go build -o validatesshusers_linux_386
-#- GOOS=linux GOARCH=arm go build -o validatesshusers_linux_arm
-#- GOOS=darwin GOARCH=amd64 go build -o validatesshusers_darwin_amd64
-#- GOOS=windows GOARCH=amd64 go build -o validatesshusers_windows_amd64.exe
-#- GOOS=windows GOARCH=386 go build -o validatesshusers_windows_386.exe
-#deploy:
-#  skip_cleanup: true
-#  provider: releases
-#  api_key:
-#    secure: 
-#  file:
-#  - validatesshusers_linux_amd64
-#  - validatesshusers_linux_386
-#  - validatesshusers_linux_arm
-#  - validatesshusers_darwin_amd64
-#  - validatesshusers_windows_amd64.exe
-#  - validatesshusers_windows_386.exe
-#  on:
-#    tags: true
-#    repo: jonhadfield/validatesshusers
-#env:
-#  global:
-#  - secure: 
-#  - secure: 
+install:
+before_deploy:
+- GOOS=linux GOARCH=amd64 go build -o validatesshusers_linux_amd64
+- GOOS=linux GOARCH=386 go build -o validatesshusers_linux_386
+- GOOS=linux GOARCH=arm go build -o validatesshusers_linux_arm
+- GOOS=darwin GOARCH=amd64 go build -o validatesshusers_darwin_amd64
+- GOOS=windows GOARCH=amd64 go build -o validatesshusers_windows_amd64.exe
+- GOOS=windows GOARCH=386 go build -o validatesshusers_windows_386.exe
+deploy:
+  skip_cleanup: true
+  provider: releases
+  api_key:
+    secure: t5ujhzzTJlK0xsOlysCPvkNWfiZ8PsQ2dM5kr76cOyKZCHcMIsZ/IzMw/pNhGhUE5CoJBBhT/CuM1Fy6r1ToeBEHZE71sUX9o/5Xh5/4dTfWosg2emI3h53P9W8mym0pZVPiG8FueCdcn6fa6FpAvwZSlHZ4RZ0+N+/51EWqI5ttqH2Ye5K6u4ufT/FoW5dxQUa4o8YzLcbaZGUsY4W8JwYPho+vczfTzDrVNn+1Ze27j0LxCRdVGAk+tGb43fm3gkRtu9NJFnCYFzSdJFKGWrMud2kDVVM9qNKkb1UGMnOOyctdH9tI/Sa2BRnU7RAOx0CJ92MUMY1df9fbCKh2ckDjM3pi8kA2ey2Dhnb+P0aXKZAtk8X9ZmeBP25Dia6jFQMC9gA6hLyZLxm0YiFYGZNbHcr2ZMIkGZ5+2LEQFVWSyfk/OpRrV7GpVtMFMpg9gW8VE215jhR1Cwl/1TDIXgEGd68SJRKgbfSR8ER3K0GCnaIq34FXv54evic8mAee8U899ONicr0ckRhMACvfuytdoWtakDd6M1nx1njagUWYTa9JJk57D5ixRD2ukeUveqHsF6lChrXbtlJaq3fdnLqMGvrk/Pn1cZ+MKMbsW+26MZDRCvuUHL0ecD3kF8J/nd2SlwKLWs11f10AXjYRmllOJDP0nyu9qUmLnk6XJL4=
+  file:
+  - validatesshusers_linux_amd64
+  - validatesshusers_linux_386
+  - validatesshusers_linux_arm
+  - validatesshusers_darwin_amd64
+  - validatesshusers_windows_amd64.exe
+  - validatesshusers_windows_386.exe
+  on:
+    tags: true
+    repo: jonhadfield/sts
